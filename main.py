@@ -29,6 +29,10 @@ eat.color('red')
 eat.penup()
 eat.goto(0,100)
 
+#Cuerpo de la serpiente
+
+bodySnake=[] 
+
 
 #functions 
 def UpHead():
@@ -75,6 +79,25 @@ while True:
         x= random.randint(-280,280)
         y= random.randint(-280,280)
         eat.goto(x,y)
+
+        bodyPart = turtle.Turtle()
+        bodyPart.speed(0)
+        bodyPart.shape('square')
+        bodyPart.color('grey')
+        bodyPart.penup()
+        bodySnake.append(bodyPart)
+
+    # Mover cuerpo de la serpiente
+    TotalBody= len(bodySnake)
+    for index in range(TotalBody-1,0,-1):
+        x = bodySnake[index-1].xcor()
+        y = bodySnake[index-1].ycor()
+        bodySnake[index].goto(x,y)
+    
+    if TotalBody >0:
+        x=head.xcor()
+        y=head.ycor()
+        bodySnake[0].goto(x,y)
     
     
 

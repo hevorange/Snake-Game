@@ -113,4 +113,17 @@ while True:
     
 
     move()
+
+    #coliciones con el cuerpo de la serpiente
+    for index in bodySnake:
+        if index.distance(head)<20:
+            time.sleep(1)
+            head.goto(0,0)
+            head.direction='stop'
+
+            for bodypart in bodySnake:
+                bodypart.goto(1000,1000)
+            bodySnake.clear()
+                
+
     time.sleep(posponer)

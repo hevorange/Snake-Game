@@ -3,6 +3,8 @@ import time
 import random
 
 posponer = 0.1
+score_actually =0
+high_score = 0
 
 #Creamos la ventana del juego
 screen = turtle.Screen()
@@ -31,7 +33,15 @@ eat.goto(0,100)
 
 #Cuerpo de la serpiente
 
-bodySnake=[] 
+bodySnake=[]
+
+score= turtle.Turtle()
+score.speed(0)
+score.color('white')
+score.penup()
+score.hideturtle()
+score.goto(0,260)
+score.write("Score: 0 High Score: 0", align='center', font=('Courier',24, 'normal'))
 
 
 #functions 
@@ -85,6 +95,11 @@ while True:
             index.goto(1000,1000)
         
         bodySnake.clear()
+        #Rezetear marcador
+        score_actually=0
+        score.clear()
+        score.write(f"Score: {score_actually} High Score: {high_score}", align='center', font=('Courier',24, 'normal'))
+
 
     if head.distance(eat)<20:
         x= random.randint(-280,280)
@@ -97,6 +112,16 @@ while True:
         bodyPart.color('grey')
         bodyPart.penup()
         bodySnake.append(bodyPart)
+
+        #aumentar marcador
+        score_actually+=10
+        
+        if score_actually > high_score:
+            high_score=score_actually
+        
+        score.clear()
+        score.write(f"Score: {score_actually} High Score: {high_score}", align='center', font=('Courier',24, 'normal'))
+
 
     # Mover cuerpo de la serpiente
     TotalBody= len(bodySnake)
@@ -124,6 +149,10 @@ while True:
             for bodypart in bodySnake:
                 bodypart.goto(1000,1000)
             bodySnake.clear()
+            score_actually=0
+            score.clear()
+            score.write(f"Score: {score_actually} High Score: {high_score}", align='center', font=('Courier',24, 'normal'))
+
                 
 
     time.sleep(posponer)

@@ -1,5 +1,6 @@
 import turtle
 import time
+import random
 
 posponer = 0.1
 
@@ -19,6 +20,15 @@ head.color('white')
 head.penup()
 head.goto(0,0)
 head.direction='stop'
+
+#comida
+eat = turtle.Turtle()
+eat.speed(0)
+eat.shape('circle')
+eat.color('red')
+eat.penup()
+eat.goto(0,100)
+
 
 #functions 
 def UpHead():
@@ -60,5 +70,13 @@ screen.onkeypress(RightHead,'Right')
 
 while True:
     screen.update()
+
+    if head.distance(eat)<20:
+        x= random.randint(-280,280)
+        y= random.randint(-280,280)
+        eat.goto(x,y)
+    
+    
+
     move()
     time.sleep(posponer)

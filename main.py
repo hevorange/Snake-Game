@@ -20,7 +20,19 @@ head.penup()
 head.goto(0,0)
 head.direction='stop'
 
-#funciones  
+#functions 
+def UpHead():
+    head.direction='up'
+
+def DownHead():
+    head.direction='down'
+
+def LeftHead():
+    head.direction='left'
+
+def RightHead():
+    head.direction='right'
+
 
 def move ():
     if head.direction == 'up':
@@ -38,6 +50,13 @@ def move ():
     elif head.direction == 'right':
         x= head.xcor()
         head.setx(x+20)
+
+#Keyboard
+screen.listen()
+screen.onkeypress(UpHead,'Up')
+screen.onkeypress(DownHead,'Down')
+screen.onkeypress(LeftHead,'Left')
+screen.onkeypress(RightHead,'Right')
 
 while True:
     screen.update()

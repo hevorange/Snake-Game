@@ -75,6 +75,17 @@ screen.onkeypress(RightHead,'Right')
 while True:
     screen.update()
 
+    #coliciones con los bordes
+    if head.xcor()>280 or head.xcor() < -280 or head.ycor()>280 or head.ycor() < -280:
+        time.sleep(1)
+        head.goto(0,0)
+        head.direction='stop'
+
+        for index in bodySnake:
+            index.goto(1000,1000)
+        
+        bodySnake.clear()
+
     if head.distance(eat)<20:
         x= random.randint(-280,280)
         y= random.randint(-280,280)
